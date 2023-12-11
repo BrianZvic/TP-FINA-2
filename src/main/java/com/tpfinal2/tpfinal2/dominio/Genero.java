@@ -17,7 +17,7 @@ import java.util.List;
 @Getter
 public class Genero extends EntidadBase{
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "cancion_genero", // Nombre de la tabla intermedia
             joinColumns = @JoinColumn(name = "genero_id"),

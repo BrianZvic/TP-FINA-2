@@ -5,12 +5,12 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import java.util.UUID;
 
+@MappedSuperclass
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@MappedSuperclass
-public class EntidadBase extends EntidadAutoria{
+public abstract class EntidadBase extends EntidadAutoria{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

@@ -6,7 +6,11 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
-public class EntidadAutoria {
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+public abstract class EntidadAutoria {
     private LocalDateTime creadoEn;
     private String creadoPor;
     private String actualizadoPor;
