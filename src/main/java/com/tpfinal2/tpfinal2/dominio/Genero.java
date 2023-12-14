@@ -17,12 +17,12 @@ import java.util.List;
 @Getter
 public class Genero extends EntidadBase{
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
+    @ManyToMany(mappedBy = "generos")
+    /*@JoinTable(
             name = "cancion_genero", // Nombre de la tabla intermedia
             joinColumns = @JoinColumn(name = "genero_id"),
             inverseJoinColumns = @JoinColumn(name = "cancion_id")
-    )
+    )*/
     private List<Cancion> canciones;
 
 

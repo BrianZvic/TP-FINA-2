@@ -18,12 +18,7 @@ import java.util.List;
 public class Artista extends EntidadBase{
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "artista_cancion",
-            joinColumns = @JoinColumn(name = "artista_id"),
-            inverseJoinColumns = @JoinColumn(name = "cancion_id")
-    )
+    @ManyToMany(mappedBy = "artista")
     private List<Cancion> canciones = new ArrayList<>();
 
 

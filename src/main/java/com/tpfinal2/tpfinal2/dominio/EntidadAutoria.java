@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-public abstract class EntidadAutoria {
+public class EntidadAutoria {
     private LocalDateTime creadoEn;
     private String creadoPor;
     private String actualizadoPor;

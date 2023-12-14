@@ -10,7 +10,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-public abstract class EntidadBase extends EntidadAutoria{
+public class EntidadBase extends EntidadAutoria{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

@@ -18,9 +18,17 @@ import java.util.List;
 public class Cancion extends EntidadBase{
 
 
-    @ManyToMany(mappedBy = "canciones")
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE})
     private List<Artista> artista;
-    @ManyToMany(mappedBy = "canciones")
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE})
+    @JoinTable(
+            name = "genero_cancion",
+            joinColumns = {@JoinColumn(name = "genero_id")},
+            inverseJoinColumns = {@JoinColumn(name = "cancion_id")}    )
     private List<Genero> generos;
 
     @Column
