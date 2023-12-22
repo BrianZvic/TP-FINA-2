@@ -19,6 +19,8 @@ public class Usuario extends EntidadBase{
     @Column
     private String nombreUsuario;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "usuario", cascade = CascadeType.PERSIST)
-    private List<ListaReproduccion> listaReproducciones =new ArrayList<>();
+    //@OneToMany(fetch = FetchType.LAZY,mappedBy = "usuario", cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "user_id")
+    private List<ListaReproduccion> listaReproducciones = new ArrayList<>();
 }

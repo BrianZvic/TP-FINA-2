@@ -3,11 +3,10 @@ package com.tpfinal2.tpfinal2.boostrap;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
-import com.tpfinal2.tpfinal2.dominio.Artista;
-import com.tpfinal2.tpfinal2.dominio.Cancion;
-import com.tpfinal2.tpfinal2.dominio.Genero;
+import com.tpfinal2.tpfinal2.dominio.*;
 import com.tpfinal2.tpfinal2.repository.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
@@ -18,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Component
+@Data
 @AllArgsConstructor
 public class BootstrapData implements CommandLineRunner {
 
@@ -28,19 +28,16 @@ public class BootstrapData implements CommandLineRunner {
     private UsuarioRepository usuarioRepository;
 
 
+
     @Override
     public void run(String... args) throws Exception {
         Bd();
 
 
     }
-
-
-
     public void Bd() {
             String path = System.getProperty("user.dir");
             String csvFile = path+"/src/main/java/com/tpfinal2/tpfinal2/recurses/generos.csv"; // Cambia esto a la ruta de tu archivo CSV
-
 
             try (CSVReader reader = new CSVReader(new FileReader(csvFile))) {
                 String[] nextLine;
@@ -52,11 +49,11 @@ public class BootstrapData implements CommandLineRunner {
                     Cancion cancion1 = addCancion("Brian",strings[1],Integer.parseInt(strings[3]),Integer.parseInt(strings[4]),strings[5]);
                     Artista artista1 = addArtista(strings[0],"Brian");
                     if(!ObjectUtils.isEmpty(data)){
-                        cancion1.setGeneros(List.of(data));
+                        cancion1.setGenero(List.of(data));
 
                     }
                     else {
-                        cancion1.setGeneros(List.of(genero1));
+                        cancion1.setGenero(List.of(genero1));
                         generoRepository.save(genero1);
                     }
 
@@ -71,8 +68,13 @@ public class BootstrapData implements CommandLineRunner {
                         artistaRepository.save(artista1);
                     }
 
-
                 }
+                List<Cancion> cancionList = cancionRepository.findAll();
+                Usuario usuario = addUsuario("Brian","Brian_music");
+                ListaReproduccion listaReproduccion = addListaReproduccion("La jodoncha",usuario,cancionList);
+                listaReproduccion.setUsuario(usuario);
+                usuarioRepository.save(usuario);
+                listaReproduccionRepository.save(listaReproduccion);
 
 
             } catch (IOException  e) {
@@ -114,6 +116,29 @@ public class BootstrapData implements CommandLineRunner {
         cancion1.setAlbum(album);
 
         return cancion1;
+    }
+
+
+
+    private ListaReproduccion addListaReproduccion(String nombre,Usuario usuario, List<Cancion> cancionList){
+        ListaReproduccion listaReproduccion = new ListaReproduccion();
+        listaReproduccion.setCreadoPor(usuario.getNombre());
+        listaReproduccion.setNombre(nombre);
+        listaReproduccion.setId(UUID.randomUUID());
+        listaReproduccion.setPrivada(Boolean.FALSE);
+        listaReproduccion.setReproduccionAleatoria(Boolean.FALSE);
+        listaReproduccion.setCanciones(cancionList);
+        listaReproduccion.setCreadoEn(LocalDateTime.now());
+        return listaReproduccion;
+    }
+    public Usuario addUsuario(String nombre, String nombreUsuario){
+        Usuario usuario = new Usuario();
+        usuario.setNombreUsuario(nombre);
+        usuario.setNombre(nombreUsuario);
+        usuario.setId(UUID.randomUUID());
+        usuario.setCreadoEn(LocalDateTime.now());
+        usuario.setCreadoPor(nombreUsuario);
+        return usuario;
     }
 
 }

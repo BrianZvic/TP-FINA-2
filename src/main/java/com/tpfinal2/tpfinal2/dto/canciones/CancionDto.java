@@ -1,14 +1,14 @@
-package com.tpfinal2.tpfinal2.dto;
-import com.tpfinal2.tpfinal2.dominio.Genero;
+package com.tpfinal2.tpfinal2.dto.canciones;
+import com.tpfinal2.tpfinal2.dto.artyista.ArtistaDto;
+import com.tpfinal2.tpfinal2.dto.genero.GeneroDto;
 import lombok.Data;
-import java.util.List;
 
 
 @Data
 public class CancionDto {
 
     private String nombre;
-    private List<ArtistaDto> artistas;
+    private ArtistaDto artistas;
     private GeneroDto genero;
     private int duracion;
     private String album;

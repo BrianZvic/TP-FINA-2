@@ -14,14 +14,13 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 public class ListaReproduccion extends EntidadBase{
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "cancion_lista_reproduccion",
-            joinColumns = {@JoinColumn(name = "cancion_id")},
-            inverseJoinColumns = {@JoinColumn(name = "listareproduccion_id")})
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "Lista-Canciones", joinColumns = @JoinColumn(name = "listareproduccionid"), inverseJoinColumns = @JoinColumn(name = "cancionid"))
     private List<Cancion> canciones;
 
     private boolean repetirFinal;
     private boolean reproduccionAleatoria;
-    @ManyToOne(fetch = FetchType.LAZY)
+    private boolean isPrivada;
+    @ManyToOne(fetch = FetchType.EAGER)
     private Usuario usuario;
 }

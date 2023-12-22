@@ -22,7 +22,6 @@ public class Artista extends EntidadBase{
     private List<Cancion> canciones = new ArrayList<>();
 
 
-    private int number;
 
 
 }

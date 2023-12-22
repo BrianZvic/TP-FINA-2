@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,12 +15,12 @@ import java.util.List;
 @Getter
 public class Genero extends EntidadBase{
 
-    @ManyToMany(mappedBy = "generos")
-    /*@JoinTable(
+    @ManyToMany()
+    @JoinTable(
             name = "cancion_genero", // Nombre de la tabla intermedia
             joinColumns = @JoinColumn(name = "genero_id"),
             inverseJoinColumns = @JoinColumn(name = "cancion_id")
-    )*/
+    )
     private List<Cancion> canciones;
 
 
