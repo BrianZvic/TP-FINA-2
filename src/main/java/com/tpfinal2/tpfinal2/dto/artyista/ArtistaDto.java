@@ -1,4 +1,6 @@
-package com.tpfinal2.tpfinal2.dto;
+package com.tpfinal2.tpfinal2.dto.artyista;
+
+
 
 import lombok.Data;
 
