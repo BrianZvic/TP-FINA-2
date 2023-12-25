@@ -7,6 +7,7 @@ import com.tpfinal2.tpfinal2.repository.ArtistaRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -17,24 +18,19 @@ import java.util.UUID;
 @Service
 @Data
 public class ArtistaServicesImpl implements ArtistaServices{
-
+    @Autowired
     ArtistaRepository artistaRepository;
 
     @Override
     public List<ArtistaDto> allArtistas(String nombre) {
         List<Artista> artistaList;
-        List<ArtistaDto> artistaDtos = new ArrayList<>();
+
         if(!ObjectUtils.isEmpty(nombre)){
-            artistaDtos = getAllArtistaStartingWith(nombre);
+            return getAllArtistaStartingWith(nombre);
         }else {
-            artistaList = artistaRepository.findAll();
-            for (Artista artista : artistaList) {
-                artistaDtos.add(ArtistaMapper.mapToArtistaDto(artista));
-            }
+            return ArtistaMapper.mapToArtistasDto(artistaRepository.findAll());
         }
 
-
-        return artistaDtos;
     }
 
     @Override

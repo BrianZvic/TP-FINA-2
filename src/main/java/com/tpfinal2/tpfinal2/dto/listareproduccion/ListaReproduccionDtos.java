@@ -13,4 +13,7 @@ public class ListaReproduccionDtos {
     private String nombre;
     private UsuarioOnlyUserNameDto usuario;
     private List<CancionDto> cancion;
+    private boolean repetirFinal;
+    private boolean reproduccionAleatoria;
+    private boolean isPrivada;
  }

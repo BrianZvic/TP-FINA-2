@@ -12,4 +12,6 @@ public class ConstanstMessages {
     public static final String MESSAGE_500 = "Un error a ocurrido. Prueba de nuevo o contacta al equipo de desarrollo.";
     public static final String NO_SE_HA_ENCONTRADO_LO_BUSCADO= "No se ha Encontrado lo que quisiste buscar";
     public static final String NO_SE_HA_OBTENIDO_RESULTADOS= "No se ha obtenido resultados";
+    public static final String STATUS_400 = "400";
+    public static final String MESSAGE_400 = "Bad Request";
 }

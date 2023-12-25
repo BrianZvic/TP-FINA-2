@@ -1,5 +1,6 @@
 package com.tpfinal2.tpfinal2.mapper;
 
+import com.tpfinal2.tpfinal2.dominio.Cancion;
 import com.tpfinal2.tpfinal2.dominio.ListaReproduccion;
 import com.tpfinal2.tpfinal2.dto.listareproduccion.ListaReproduccionDtos;
 import lombok.Data;
@@ -21,6 +22,8 @@ public class ListaReproduccionMapper {
         listaReproduccionDtos.setNombre(listaReproduccion.getNombre());
         listaReproduccionDtos.setUsuario(UsuarioMapper.mapToUsuarioOnlyUserNameDto(listaReproduccion.getUsuario()));
         listaReproduccionDtos.setCancion(CancionMapper.mapToCancionesDto(listaReproduccion.getCanciones()));
+        listaReproduccionDtos.setPrivada(listaReproduccion.isPrivada());
+
         return listaReproduccionDtos;
     }
 
@@ -40,5 +43,7 @@ public class ListaReproduccionMapper {
 
         return listaReproduccions;
     }
+
+
 
 }

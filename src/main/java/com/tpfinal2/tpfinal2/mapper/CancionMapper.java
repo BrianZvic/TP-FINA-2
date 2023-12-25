@@ -2,6 +2,7 @@ package com.tpfinal2.tpfinal2.mapper;
 
 import com.tpfinal2.tpfinal2.dominio.Artista;
 import com.tpfinal2.tpfinal2.dominio.Cancion;
+import com.tpfinal2.tpfinal2.dominio.Genero;
 import com.tpfinal2.tpfinal2.dto.artyista.ArtistaDto;
 import com.tpfinal2.tpfinal2.dto.genero.GeneroDto;
 import com.tpfinal2.tpfinal2.dto.genero.GeneroOnlyNameDto;
@@ -28,7 +29,8 @@ public class CancionMapper {
         cancionDto.setAlbum(cancion.getAlbum());
         cancionDto.setRanking(cancion.getRanking());
         cancionDto.setDuracion(cancion.getDuracion());
-        //cancionDto.setGenero(GeneroMapper.mapToGeneroDto(cancion.getGenero(), new GeneroDto()));
+        cancionDto.setArtista(ArtistaMapper.mapToArtistaNameDto(cancion.getArtista().get(0)));
+        cancionDto.setGenero(GeneroMapper.mapToGeneroOnlyNameDto(cancion.getGenero().get(0)));
         return cancionDto;
     }
     
@@ -69,6 +71,13 @@ public class CancionMapper {
         return cancions;
     }
 
+    public static List<String> mapToCancionesName(List<Cancion> cancions){
+        List<String> canionesName = new ArrayList<>();
+        for (Cancion cancion : cancions) {
+            canionesName.add(cancion.getNombre());
+        }
+        return canionesName;
+    }
 
 
 

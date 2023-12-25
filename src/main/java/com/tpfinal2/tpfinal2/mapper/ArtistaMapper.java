@@ -1,10 +1,11 @@
 package com.tpfinal2.tpfinal2.mapper;
 import com.tpfinal2.tpfinal2.dominio.Artista;
 import com.tpfinal2.tpfinal2.dto.artyista.ArtistaDto;
-import com.tpfinal2.tpfinal2.dto.usuario.UsuarioDto;
+import com.tpfinal2.tpfinal2.dto.artyista.ArtistaNameDto;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 public class ArtistaMapper {
@@ -19,7 +20,7 @@ public class ArtistaMapper {
     public static ArtistaDto mapToArtistaDto(Artista artista){
         ArtistaDto artistaDto = new ArtistaDto();
         artistaDto.setNombre(artista.getNombre());
-        //artistaDto.setCanciones(CancionMapper.mapToCancionesDto(artista.getCanciones()));
+        artistaDto.setCancionNames(CancionMapper.mapToCancionesName(artista.getCanciones()));
         return artistaDto;
     }
 
@@ -29,6 +30,12 @@ public class ArtistaMapper {
             artistaDtos.add(mapToArtistaDto(artista));
         }
         return artistaDtos;
+    }
+
+    public static ArtistaNameDto mapToArtistaNameDto(Artista artista){
+        ArtistaNameDto artistaNameDto = new ArtistaNameDto();
+        artistaNameDto.setNombre(artista.getNombre());
+        return artistaNameDto;
     }
 
 

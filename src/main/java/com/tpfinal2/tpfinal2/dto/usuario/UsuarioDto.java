@@ -12,7 +12,7 @@ public class UsuarioDto {
 
     private String nombre;
     private String nombreUsuario;
-    private List<ListaReproduccionDtos> listaReproduccion = new ArrayList<>();
+    private List<ListaReproduccionDtos> listaReproduccion;
 
 
 }

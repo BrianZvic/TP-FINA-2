@@ -1,16 +1,23 @@
 package com.tpfinal2.tpfinal2.mapper;
 
 import com.tpfinal2.tpfinal2.dominio.Usuario;
+import com.tpfinal2.tpfinal2.dto.respuestaDto.UsuarioRespuestaDto;
 import com.tpfinal2.tpfinal2.dto.usuario.UsuarioDto;
 import com.tpfinal2.tpfinal2.dto.usuario.UsuarioOnlyUserNameDto;
+import com.tpfinal2.tpfinal2.services.listaReproduccion.ListaReproduccionImpl;
+import com.tpfinal2.tpfinal2.services.listaReproduccion.ListaReproduccionServices;
+import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@AllArgsConstructor
+@Getter
+@Setter
 public class UsuarioMapper {
-
-
+    @Autowired
+    public static ListaReproduccionServices listaReproduccionServices;
 
     public static Usuario mapToUsuario(Usuario usuario, UsuarioDto usuarioDto){
 
@@ -21,11 +28,13 @@ public class UsuarioMapper {
         return usuario;
     }
 
-    public static UsuarioDto mapToUsuarioDto(Usuario usuario, UsuarioDto usuarioDto){
-        //List<ListaReproduccion> ls = listaReproduccionRepository.findAllByUsuario_Id(usuario.getId());
+    public static UsuarioDto mapToUsuarioDto(Usuario usuario){
+        UsuarioDto usuarioDto = new UsuarioDto();
         usuarioDto.setNombre(usuario.getNombre());
         usuarioDto.setNombreUsuario(usuario.getNombreUsuario());
-        //usuarioDto.setListaReproduccion(ListaReproduccionMapper.mapToListaReproduccioListDto(ls));
+        usuarioDto.setListaReproduccion(ListaReproduccionMapper
+                .mapToListaReproduccioListDto(listaReproduccionServices
+                        .getAllListaReproducionUsuario(usuario.getId())));
 
         return usuarioDto;
     }
@@ -42,7 +51,7 @@ public class UsuarioMapper {
     public static List<UsuarioDto> mapToUsuarioListDto(List<Usuario> usuarios, UsuarioDto usuarioDto) {
         List<UsuarioDto> usuarioDtoList = new ArrayList<>();
         for (Usuario usuario : usuarios) {
-            usuarioDtoList.add(mapToUsuarioDto(usuario, new UsuarioDto()));
+            usuarioDtoList.add(mapToUsuarioDto(usuario));
         }
         return usuarioDtoList;
     }
@@ -52,6 +61,8 @@ public class UsuarioMapper {
         user.setNombreUsuario(usuario.getNombreUsuario());
         return user;
     }
+
+
 
 
 }

@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Controller
 @Data
-public class ListaReproduccionAnyCancionesDto{
+public class ListaReproduccionUsuarioDto {
     private UUID id;
     private String nombre;
     private int cantCanciones;

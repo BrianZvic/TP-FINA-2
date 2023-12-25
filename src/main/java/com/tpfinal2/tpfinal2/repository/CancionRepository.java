@@ -11,4 +11,5 @@ import java.util.UUID;
 public interface CancionRepository extends JpaRepository<Cancion, UUID> {
 
     List<Cancion> findByNombreLikeIgnoreCaseOrderByRankingDesc(String nombre);
+    List<Cancion> findByAlbumLikeIgnoreCaseOrderByAlbumDesc(String nombre);
 }

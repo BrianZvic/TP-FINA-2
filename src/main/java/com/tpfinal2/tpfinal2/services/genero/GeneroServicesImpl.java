@@ -29,7 +29,7 @@ public class GeneroServicesImpl implements GeneroServices {
         }
 
         for (Genero genero : generoLit) {
-            generoDto.add(GeneroMapper.mapToGeneroDto(genero,new GeneroDto()));
+            generoDto.add(GeneroMapper.mapToGeneroDto(genero));
         }
 
         return generoDto;

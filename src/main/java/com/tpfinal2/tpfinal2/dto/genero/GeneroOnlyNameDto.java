@@ -7,6 +7,5 @@ import org.springframework.stereotype.Controller;
 @Controller
 @Data
 public class GeneroOnlyNameDto {
-
     String nombre;
 }

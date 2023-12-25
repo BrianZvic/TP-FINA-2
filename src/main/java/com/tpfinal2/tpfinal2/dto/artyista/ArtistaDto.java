@@ -10,5 +10,5 @@ import java.util.UUID;
 @Data
 public class ArtistaDto {
     private String nombre;
-    private List<UUID> cancionDtos;
+    private List<String> cancionNames;
 }

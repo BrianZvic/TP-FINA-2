@@ -75,7 +75,14 @@ public class BootstrapData implements CommandLineRunner {
                 listaReproduccion.setUsuario(usuario);
                 usuarioRepository.save(usuario);
                 listaReproduccionRepository.save(listaReproduccion);
-
+                ListaReproduccion listaReproduccion2 = addListaReproduccion("Regeton",new Usuario(),new ArrayList<>());
+                listaReproduccion2.setPrivada(Boolean.FALSE);
+                listaReproduccion2.setUsuario(usuario);
+                listaReproduccionRepository.save(listaReproduccion2);
+                ListaReproduccion listaReproduccion3 = addListaReproduccion("Electronica",new Usuario(),new ArrayList<>());
+                listaReproduccion3.setPrivada(Boolean.FALSE);
+                listaReproduccion3.setUsuario(usuario);
+                listaReproduccionRepository.save(listaReproduccion3);
 
             } catch (IOException  e) {
                 e.printStackTrace();
@@ -125,7 +132,7 @@ public class BootstrapData implements CommandLineRunner {
         listaReproduccion.setCreadoPor(usuario.getNombre());
         listaReproduccion.setNombre(nombre);
         listaReproduccion.setId(UUID.randomUUID());
-        listaReproduccion.setPrivada(Boolean.FALSE);
+        listaReproduccion.setPrivada(Boolean.TRUE);
         listaReproduccion.setReproduccionAleatoria(Boolean.FALSE);
         listaReproduccion.setCanciones(cancionList);
         listaReproduccion.setCreadoEn(LocalDateTime.now());
